@@ -10,10 +10,22 @@ var numberOfGroupsParameter = parameterPath.sync.numberOfGroups;
 
 var globalGroupName = "Global group";
 var groupPrefix = "Group ";
+var dirtyGroups = [];
 
 
 function init() {
+	script.setUpdateRate(50);
 	createGroups();
+}
+
+function update() {
+	for(var i=0; i<dirtyGroups.length; i++) {
+		var groupName = dirtyGroups[i];
+		var groupC = local.getChild("values").getChild(groupName);
+		updatePatternForGroupContainer(groupC);
+	}
+
+	dirtyGroups = [];
 }
 
 function moduleParameterChanged(param) {
@@ -37,9 +49,10 @@ function moduleParameterChanged(param) {
 function moduleValueChanged (param) { 
 	if (param.is(local.outActivity)) return;
 	
-	var groupC = param.getParent().getParent();
-	updatePatternForGroupContainer(groupC);
+	var groupName = param.getParent().getParent().name;
+	markGroupDirty(groupName);
 }
+
 
 function updatePatternForGroupContainer(groupC) {
 	var modeC = groupC.mode;
@@ -60,7 +73,6 @@ function updatePatternForGroupContainer(groupC) {
 
 	local.send("/pattern", groupID, isPublic, page, mode, actives, hue, saturation, brightness, speed, density);
 }
-
 
 
 function createGroups() {
@@ -186,7 +198,6 @@ function adjustDensity(groupID, value) {
 function setColor(groupID, color) {
 	var groupC = getGroupContainer(groupID);
 	var hsv = rgb2hsv(color[0], color[1], color[2]);
-	script.log(hsv[0] + ", " + hsv[1] + ", " + hsv[2]);
 
 	groupC.adjust.hue.set(hsv[0]);
 	groupC.adjust.saturation.set(hsv[1]);
@@ -201,6 +212,20 @@ function setColor(groupID, color) {
 ////////////////////////
 // Helpers
 ////////////////////////
+
+function markGroupDirty(groupName) {
+	if (!keyExistsInArray(dirtyGroups, groupName)) {
+		dirtyGroups.push(groupName);
+	}
+}
+
+function keyExistsInArray(a, k) {
+	for (var i=0; i<a.length; i++) {
+		if (a[i] == k) return true;
+	}
+
+	return false;
+}
 
 function rgb2hsv (r,g,b) {
 	var max = Math.max(Math.max(r, g), b);
