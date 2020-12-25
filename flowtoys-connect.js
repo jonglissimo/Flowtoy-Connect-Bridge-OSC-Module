@@ -168,33 +168,9 @@ function pattern (groupID, page, mode, enableAdjust, brightness, hue, saturation
 	groupC.adjust.density.set(density);
 }
 
-function adjustBrightness(groupID, value) {
+function adjust(groupID, adjust, value) {
 	var groupC = getGroupContainer(groupID);
-	groupC.adjust.brightness.set(value);
-	groupC.adjust.enableAdjust.set(true);
-}
-
-function adjustHue(groupID, value) {
-	var groupC = getGroupContainer(groupID);
-	groupC.adjust.hue.set(value);
-	groupC.adjust.enableAdjust.set(true);
-}
-
-function adjustSaturation(groupID, value) {
-	var groupC = getGroupContainer(groupID);
-	groupC.adjust.saturation.set(value);
-	groupC.adjust.enableAdjust.set(true);
-}
-
-function adjustSpeed(groupID, value) {
-	var groupC = getGroupContainer(groupID);
-	groupC.adjust.speed.set(value);
-	groupC.adjust.enableAdjust.set(true);
-}
-
-function adjustDensity(groupID, value) {
-	var groupC = getGroupContainer(groupID);
-	groupC.adjust.density.set(value);
+	groupC.adjust[adjust].set(value);
 	groupC.adjust.enableAdjust.set(true);
 }
 

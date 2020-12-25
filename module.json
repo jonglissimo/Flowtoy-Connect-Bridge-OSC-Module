@@ -165,9 +165,9 @@
 				}
 			}
 		},
-		"Brightness": {
+		"Adjust": {
 			"menu": "",
-			"callback": "adjustBrightness",
+			"callback": "adjust",
 			"parameters": {
 				"Group ID" : {
 					"type": "Integer",
@@ -175,85 +175,19 @@
 					"min": 0,
 					"max": 20
 				},
-				"Brightness" : {
+				"Adjust": {
+					"type": "Enum",
+					"options": {
+						"Brightness": "brightness",
+						"Hue": "hue",
+						"Saturation": "saturation",
+						"Speed": "speed",
+						"Density": "density"
+					}
+				},
+				"Value" : {
 					"type": "Float",
 					"default": 0.1,
-					"min": 0,
-					"max": 1,
-					"useForMapping": true
-				}
-			}
-		},
-		"Hue": {
-			"menu": "",
-			"callback": "adjustHue",
-			"parameters": {
-				"Group ID" : {
-					"type": "Integer",
-					"default": 0,
-					"min": 0,
-					"max": 20
-				},
-				"Hue" : {
-					"type": "Float",
-					"default": 0,
-					"min": 0,
-					"max": 1,
-					"useForMapping": true
-				}
-			}
-		},
-		"Saturation": {
-			"menu": "",
-			"callback": "adjustSaturation",
-			"parameters": {
-				"Group ID" : {
-					"type": "Integer",
-					"default": 0,
-					"min": 0,
-					"max": 20
-				},
-				"Saturation" : {
-					"type": "Float",
-					"default": 1,
-					"min": 0,
-					"max": 1,
-					"useForMapping": true
-				}
-			}
-		},
-		"Speed": {
-			"menu": "",
-			"callback": "adjustSpeed",
-			"parameters": {
-				"Group ID" : {
-					"type": "Integer",
-					"default": 0,
-					"min": 0,
-					"max": 20
-				},
-				"Speed" : {
-					"type": "Float",
-					"default": 0.5,
-					"min": 0,
-					"max": 1,
-					"useForMapping": true
-				}
-			}
-		},
-		"Density": {
-			"menu": "",
-			"callback": "adjustDensity",
-			"parameters": {
-				"Group ID" : {
-					"type": "Integer",
-					"default": 0,
-					"min": 0,
-					"max": 20
-				},
-				"Density" : {
-					"type": "Float",
-					"default": 1,
 					"min": 0,
 					"max": 1,
 					"useForMapping": true
