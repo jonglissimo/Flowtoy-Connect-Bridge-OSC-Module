@@ -1,0 +1,280 @@
+{
+	"name": "Flowtoys Connect Bridge OSC Module",
+	"type": "OSC",
+	"path": "Hardware",
+	
+	"version": "0.0.1",
+	"description": "Module to control Flowtoys vision props through the OSC bridge",
+	"url": "",
+	"downloadURL": "",
+
+	"hasInput": false,
+	"hasOutput": true, 
+
+	"hideDefaultCommands": true,
+	"hideDefaultParameters": [
+		"autoFeedback",
+		"pass_through",
+		"input",
+		"outputs",
+		"useHierarchy"
+	],
+	
+	"defaults":
+	{
+		"autoAdd": false,
+		"OSC Outputs": {
+			"OSC Output": {
+				"local": false,
+				"remoteHost": "192.168.8.240",
+				"remotePort": 8888
+			}
+		}
+	},
+
+	"parameters":
+	{
+		"Power":{
+			"type": "Container",
+			"collapsed": false,
+			
+			"Wake Up": { "type": "Trigger", "description": "Wake up all groups"},
+			"Power Off": { "type": "Trigger", "description": "Power off all groups"},
+		},
+		"Sync":{
+			"type": "Container",
+			"collapsed": true,
+			
+			"Number of groups": { "type": "Integer", "description": "Number of groups to control", "default": 0, "min": 1, "max": 20 },
+			"Start": { "type": "Trigger", "description": "Start sync process"},
+			"Stop": { "type": "Trigger", "description": "Stop sync process"},
+			"Reset": { "type": "Trigger", "description": "Reset synced groups" }
+		}
+	},
+
+	"scripts": [
+		"flowtoys-connect.js"
+	],
+	"values": {},
+	"commands": {
+		"Wake up": {
+			"menu": "",
+			"callback": "wakeUp",
+			"parameters": {
+				"Group ID" : {
+					"type": "Integer",
+					"default": 0,
+					"min": 0,
+					"max": 20
+				}
+			}
+		},
+		"Power off": {
+			"menu": "",
+			"callback": "powerOff",
+			"parameters": {
+				"Group ID" : {
+					"type": "Integer",
+					"default": 0,
+					"min": 0,
+					"max": 20
+				}
+			}
+		},
+		"Start sync": {
+			"menu": "",
+			"callback": "startSync",
+			"parameters": {}
+		},
+		"Stop sync": {
+			"menu": "",
+			"callback": "stopSync",
+			"parameters": {}
+		},
+		"Reset sync": {
+			"menu": "",
+			"callback": "resetSync",
+			"parameters": {}
+		},
+		"Pattern": {
+			"menu": "",
+			"callback": "pattern",
+			"parameters": {
+				"Group ID" : {
+					"type": "Integer",
+					"default": 0,
+					"min": 0,
+					"max": 20
+				},
+				
+				"Mode": {
+					"type": "Container",
+
+					"Page": {
+						"type": "Integer",
+						"default": 1,
+						"min": 1,
+						"max": 13
+					},
+					"Mode": {
+						"type": "Integer",
+						"default": 3,
+						"min": 1,
+						"max": 11
+					}
+				},	
+
+				"Adjust": {
+					"type": "Container",
+
+					"Enable Adjust": {
+						"type": "Boolean",
+						"default": true
+					},
+					"Brightness": {
+						"type": "Float",
+						"default": 0.1,
+						"min": 0,
+						"max": 1
+					},
+					"Hue": {
+						"type": "Float",
+						"default": 0,
+						"min": 0,
+						"max": 1
+					},
+					"Saturation": {
+						"type": "Float",
+						"default": 1,
+						"min": 0,
+						"max": 1
+					},
+					"Speed": {
+						"type": "Float",
+						"default": 0.5,
+						"min": 0,
+						"max": 1
+					},
+					"Density": {
+						"type": "Float",
+						"default": 1,
+						"min": 0,
+						"max": 1
+					}
+				}
+			}
+		},
+		"Brightness": {
+			"menu": "",
+			"callback": "adjustBrightness",
+			"parameters": {
+				"Group ID" : {
+					"type": "Integer",
+					"default": 0,
+					"min": 0,
+					"max": 20
+				},
+				"Brightness" : {
+					"type": "Float",
+					"default": 0.1,
+					"min": 0,
+					"max": 1,
+					"useForMapping": true
+				}
+			}
+		},
+		"Hue": {
+			"menu": "",
+			"callback": "adjustHue",
+			"parameters": {
+				"Group ID" : {
+					"type": "Integer",
+					"default": 0,
+					"min": 0,
+					"max": 20
+				},
+				"Hue" : {
+					"type": "Float",
+					"default": 0,
+					"min": 0,
+					"max": 1,
+					"useForMapping": true
+				}
+			}
+		},
+		"Saturation": {
+			"menu": "",
+			"callback": "adjustSaturation",
+			"parameters": {
+				"Group ID" : {
+					"type": "Integer",
+					"default": 0,
+					"min": 0,
+					"max": 20
+				},
+				"Saturation" : {
+					"type": "Float",
+					"default": 1,
+					"min": 0,
+					"max": 1,
+					"useForMapping": true
+				}
+			}
+		},
+		"Speed": {
+			"menu": "",
+			"callback": "adjustSpeed",
+			"parameters": {
+				"Group ID" : {
+					"type": "Integer",
+					"default": 0,
+					"min": 0,
+					"max": 20
+				},
+				"Speed" : {
+					"type": "Float",
+					"default": 0.5,
+					"min": 0,
+					"max": 1,
+					"useForMapping": true
+				}
+			}
+		},
+		"Density": {
+			"menu": "",
+			"callback": "adjustDensity",
+			"parameters": {
+				"Group ID" : {
+					"type": "Integer",
+					"default": 0,
+					"min": 0,
+					"max": 20
+				},
+				"Density" : {
+					"type": "Float",
+					"default": 1,
+					"min": 0,
+					"max": 1,
+					"useForMapping": true
+				}
+			}
+		},
+		"Color": {
+			"menu": "",
+			"callback": "setColor",
+			"parameters": {
+				"Group ID" : {
+					"type": "Integer",
+					"default": 0,
+					"min": 0,
+					"max": 20
+				},
+				"Color": {
+					"type": "Color",
+					"default": [1,0,0,1],
+					"useForMapping": true
+				}
+			}
+		},
+	}
+}
