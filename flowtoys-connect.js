@@ -6,7 +6,8 @@ var powerOffTrigger = parameterPath.power.powerOff;
 var startSyncTrigger = parameterPath.sync.start;
 var stopSyncTrigger = parameterPath.sync.stop;
 var resetSyncTrigger = parameterPath.sync.reset;
-var numberOfGroupsParameter = parameterPath.sync.numberOfGroups;
+var numberOfGroupsParameter = parameterPath.numberOfGroups;
+var updateRateParameter = parameterPath.updateRate;
 
 var globalGroupName = "Global group";
 var groupPrefix = "Group ";
@@ -14,7 +15,7 @@ var dirtyGroups = [];
 
 
 function init() {
-	script.setUpdateRate(50);
+	updateRate();
 	createGroups();
 }
 
@@ -43,6 +44,8 @@ function moduleParameterChanged(param) {
 		resetSync();
 	} else if (param.is(numberOfGroupsParameter)) {
 		createGroups();
+	} else if (param.is(updateRateParameter)) {
+		updateRate();
 	}
 }
 
@@ -286,4 +289,8 @@ function toLowerCamelCase(s) {
 function capitalize(s) {
 	if (typeof s !== 'string') return '';
 	return s.charAt(0).toUpperCase() + s.substring(1,s.length);
+}
+
+function updateRate() {
+	script.setUpdateRate(updateRateParameter.get());
 }

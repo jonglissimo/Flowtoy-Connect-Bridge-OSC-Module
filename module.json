@@ -34,18 +34,19 @@
 
 	"parameters":
 	{
+		"Number of groups": { "type": "Integer", "description": "Number of groups to control", "default": 0, "min": 1, "max": 20 },
+		"Update Rate": { "type": "Integer", "description": "Update rate", "default": 25, "min": 1, "max": 120 },
 		"Power":{
 			"type": "Container",
 			"collapsed": false,
 			
 			"Wake Up": { "type": "Trigger", "description": "Wake up all groups"},
-			"Power Off": { "type": "Trigger", "description": "Power off all groups"},
+			"Power Off": { "type": "Trigger", "description": "Power off all groups"}
 		},
 		"Sync":{
 			"type": "Container",
 			"collapsed": true,
 			
-			"Number of groups": { "type": "Integer", "description": "Number of groups to control", "default": 0, "min": 1, "max": 20 },
 			"Start": { "type": "Trigger", "description": "Start sync process"},
 			"Stop": { "type": "Trigger", "description": "Stop sync process"},
 			"Reset": { "type": "Trigger", "description": "Reset synced groups" }
@@ -275,6 +276,6 @@
 					"useForMapping": true
 				}
 			}
-		},
+		}
 	}
 }
