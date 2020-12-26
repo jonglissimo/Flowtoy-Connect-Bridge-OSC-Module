@@ -121,7 +121,7 @@
 						"type": "Integer",
 						"default": 3,
 						"min": 1,
-						"max": 35
+						"max": 50
 					}
 				},
 			}
@@ -151,7 +151,7 @@
 						"type": "Integer",
 						"default": 3,
 						"min": 1,
-						"max": 35
+						"max": 50
 					}
 				},	
 

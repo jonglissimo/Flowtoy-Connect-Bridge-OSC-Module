@@ -100,7 +100,7 @@ function createGroup(groupName) {
 
 	var modeC = groupC.addContainer("Mode");
 	modeC.addIntParameter("Page","Page",1,1,13);
-	modeC.addIntParameter("Mode","Page",3,1,35);
+	modeC.addIntParameter("Mode","Page",3,1,50);
 	
 	var adjustC = groupC.addContainer("Adjust");
 	adjustC.setCollapsed(true);
