@@ -111,6 +111,11 @@ function createGroup(groupName) {
 	adjustC.addFloatParameter("Speed", "Speed adjust", 0.5, 0, 1);
 	adjustC.addFloatParameter("Density", "Density adjust", 1, 0, 1);
 
+	adjustC.addFloatParameter("LFO1", "LFO1", 0.5, 0, 1);
+	adjustC.addFloatParameter("LFO2", "LFO2", 0.5, 0, 1);
+	adjustC.addFloatParameter("LFO3", "LFO3", 0.5, 0, 1);
+	adjustC.addFloatParameter("LFO4", "LFO4", 0.5, 0, 1);
+
 	script.log("Created Group " + groupName);
 }
 
@@ -159,7 +164,7 @@ function changeMode (groupID, page, mode){
 	groupC.mode.mode.set(mode);
 }
 
-function changeModeAndAdjust (groupID, page, mode, enableAdjust, brightness, hue, saturation, speed, density){
+function changeModeAndAdjust (groupID, page, mode, enableAdjust, brightness, hue, saturation, speed, density, lfo1, lfo2, lfo3, lfo4){
 	var groupC = getGroupContainer(groupID);
 
 	groupC.mode.page.set(page);
@@ -171,6 +176,11 @@ function changeModeAndAdjust (groupID, page, mode, enableAdjust, brightness, hue
 	groupC.adjust.saturation.set(saturation);
 	groupC.adjust.speed.set(speed);
 	groupC.adjust.density.set(density);
+
+	groupC.adjust.lfo1.set(lfo1);
+	groupC.adjust.lfo2.set(lfo2);
+	groupC.adjust.lfo3.set(lfo3);
+	groupC.adjust.lfo4.set(lfo4);
 }
 
 function adjust(groupID, adjustType, value) {
