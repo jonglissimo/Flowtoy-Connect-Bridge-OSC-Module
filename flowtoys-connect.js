@@ -152,9 +152,14 @@ function resetSync (){
 	local.send("/resetSync");
 }
 
-function pattern (groupID, page, mode, enableAdjust, brightness, hue, saturation, speed, density){
-	script.log("Pattern");
+function changeMode (groupID, page, mode){
+	var groupC = getGroupContainer(groupID);
 
+	groupC.mode.page.set(page);
+	groupC.mode.mode.set(mode);
+}
+
+function changeModeAndAdjust (groupID, page, mode, enableAdjust, brightness, hue, saturation, speed, density){
 	var groupC = getGroupContainer(groupID);
 
 	groupC.mode.page.set(page);
@@ -168,10 +173,15 @@ function pattern (groupID, page, mode, enableAdjust, brightness, hue, saturation
 	groupC.adjust.density.set(density);
 }
 
-function adjust(groupID, adjust, value) {
+function adjust(groupID, adjustType, value) {
 	var groupC = getGroupContainer(groupID);
-	groupC.adjust[adjust].set(value);
+	groupC.adjust[adjustType].set(value);
 	groupC.adjust.enableAdjust.set(true);
+}
+
+function enableAdjust(groupID, value) {
+	var groupC = getGroupContainer(groupID);
+	groupC.adjust.enableAdjust.set(value);
 }
 
 function setColor(groupID, color) {

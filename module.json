@@ -97,9 +97,39 @@
 			"callback": "resetSync",
 			"parameters": {}
 		},
-		"Pattern": {
+		"Mode": {
 			"menu": "",
-			"callback": "pattern",
+			"callback": "changeMode",
+			"parameters": {
+				"Group ID" : {
+					"type": "Integer",
+					"default": 0,
+					"min": 0,
+					"max": 20
+				},
+				
+				"Mode": {
+					"type": "Container",
+
+					"Page": {
+						"type": "Integer",
+						"default": 1,
+						"min": 1,
+						"max": 13
+					},
+					"Mode": {
+						"type": "Integer",
+						"default": 3,
+						"min": 1,
+						"max": 11
+					}
+				},
+			}
+		},
+
+		"Mode + Adjust": {
+			"menu": "",
+			"callback": "changeModeAndAdjust",
 			"parameters": {
 				"Group ID" : {
 					"type": "Integer",
@@ -191,6 +221,22 @@
 					"min": 0,
 					"max": 1,
 					"useForMapping": true
+				}
+			}
+		},
+		"Enable Adjust": {
+			"menu": "",
+			"callback": "enableAdjust",
+			"parameters": {
+				"Group ID" : {
+					"type": "Integer",
+					"default": 0,
+					"min": 0,
+					"max": 20
+				},
+				"Enable Adjust": {
+					"type": "Boolean",
+					"default": true
 				}
 			}
 		},
