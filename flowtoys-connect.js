@@ -182,8 +182,8 @@ function setColor(groupID, color) {
 	groupC.adjust.saturation.set(hsv[1]);
 	groupC.adjust.brightness.set(hsv[2]);
 
-	groupC.mode.page.set(1);
-	groupC.mode.mode.set(3);
+	groupC.mode.page.set(3);
+	groupC.mode.mode.set(8);
 	groupC.adjust.enableAdjust.set(true);
 }
 
