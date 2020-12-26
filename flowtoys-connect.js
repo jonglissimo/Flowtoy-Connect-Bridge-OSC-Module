@@ -61,7 +61,7 @@ function updatePatternForGroupContainer(groupC) {
 	var modeC = groupC.mode;
 	var adjustC = groupC.adjust;
 
-	var groupID = getGroupID(groupC.name);
+	var groupID = getGroupIDFromContainerName(groupC.name);
 	var isPublic = 0;
 
 	var page = modeC.page.get() - 1;
@@ -231,6 +231,12 @@ function rgb2hsv (r,g,b) {
 function getGroupID(groupName) {
 	var isGlobalGroup = isGlobalGroup(groupName);
 	var groupID = (isGlobalGroup) ? 0 : parseInt(groupName.replace(groupPrefix));
+	return groupID;
+}
+
+function getGroupIDFromContainerName (groupContainerName) {
+	var isGlobalGroup = (groupContainerName == toLowerCamelCase(globalGroupName));
+	var groupID = (isGlobalGroup) ? 0 : parseInt(groupContainerName.replace("group", ""));
 	return groupID;
 }
 
