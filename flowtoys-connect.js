@@ -139,7 +139,7 @@ function powerOff (group){
 
 function startSync (){
 	script.log("Start sync");
-	local.send("/startSync");
+	local.send("/sync");
 }
 
 function stopSync (){
