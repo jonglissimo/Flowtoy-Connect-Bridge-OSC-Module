@@ -10,17 +10,30 @@ var numberOfGroupsParameter = parameterPath.numberOfGroups;
 var updateRateParameter = parameterPath.updateRate;
 
 var globalGroupName = "Global group";
+var globalGroupContainerName = "";
 var groupPrefix = "Group ";
 var dirtyGroups = [];
 
 
 function init() {
+	globalGroupContainerName = toLowerCamelCase(globalGroupName);
+
 	updateRate();
 	createGroups();
 }
 
 function update() {
-	for(var i=0; i<dirtyGroups.length; i++) {
+	var globalGroupIndex = dirtyGroups.indexOf(globalGroupContainerName);
+	var globalGroupIsIncluded = (globalGroupIndex > -1);
+
+	if (globalGroupIsIncluded) { // first send to global group
+		var groupC = local.getChild("values").getChild(globalGroupContainerName);
+		updatePatternForGroupContainer(groupC);
+
+		dirtyGroups.splice(globalGroupIndex); // remove global group 
+	}
+
+	for(var i=0; i < dirtyGroups.length; i++) { // then send to specific groups
 		var groupName = dirtyGroups[i];
 		var groupC = local.getChild("values").getChild(groupName);
 		updatePatternForGroupContainer(groupC);
@@ -54,6 +67,11 @@ function moduleValueChanged (param) {
 	
 	var groupName = param.getParent().getParent().name;
 	markGroupDirty(groupName);
+
+	if (groupName == globalGroupContainerName) {
+		var containerName = param.getParent().name;
+		updateGlobalParameterForAllGroups(containerName, param.name, param.get());
+	}
 }
 
 
@@ -75,6 +93,16 @@ function updatePatternForGroupContainer(groupC) {
 	var density = parseInt(adjustC.density.get() * 255);
 
 	local.send("/pattern", groupID, isPublic, page, mode, actives, hue, saturation, brightness, speed, density);
+}
+
+
+function updateGlobalParameterForAllGroups(containerName, parameterName, value) {
+	for (var i=1; i<= numberOfGroupsParameter.get(); i++) {
+		var groupName = toLowerCamelCase(groupPrefix + i);
+		var groupC = local.getChild("values").getChild(groupName);
+		var parameter = groupC[containerName][parameterName];
+		parameter.set(value);
+	}
 }
 
 
@@ -187,11 +215,11 @@ function enableAdjust(groupID, value) {
 function setColor(groupID, color) {
 	var groupC = getGroupContainer(groupID);
 	var hsv = rgb2hsv(color[0], color[1], color[2]);
-
+	
 	groupC.adjust.hue.set(hsv[0]);
 	groupC.adjust.saturation.set(hsv[1]);
 	groupC.adjust.brightness.set(hsv[2]);
-
+	
 	groupC.mode.page.set(3);
 	groupC.mode.mode.set(8);
 	groupC.adjust.enableAdjust.set(true);
@@ -245,7 +273,7 @@ function getGroupID(groupName) {
 }
 
 function getGroupIDFromContainerName (groupContainerName) {
-	var isGlobalGroup = (groupContainerName == toLowerCamelCase(globalGroupName));
+	var isGlobalGroup = (groupContainerName == globalGroupContainerName);
 	var groupID = (isGlobalGroup) ? 0 : parseInt(groupContainerName.replace("group", ""));
 	return groupID;
 }
