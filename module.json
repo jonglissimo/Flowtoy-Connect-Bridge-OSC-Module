@@ -27,7 +27,7 @@
 			"OSC Output": {
 				"local": false,
 				"remoteHost": "192.168.8.240",
-				"remotePort": 8888
+				"remotePort": 9000
 			}
 		}
 	},
