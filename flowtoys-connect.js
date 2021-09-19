@@ -84,11 +84,12 @@ function updatePatternForGroupContainer(groupC) {
 
 	var page = modeC.page.get() - 1;
 	var mode = modeC.mode.get() - 1;
-	
+	var maxBrightness = local.parameters.maxBrightness.get();
+
 	var actives = adjustC.enableAdjust.get() ? 62 : 0;
 	var hue = parseInt(adjustC.hue.get() * 255);
 	var saturation = parseInt(adjustC.saturation.get() * 255);
-	var brightness = parseInt(adjustC.brightness.get() * 255);
+	var brightness = parseInt(adjustC.brightness.get() * maxBrightness * 255);
 	var speed = parseInt(adjustC.speed.get() * 255);
 	var density = parseInt(adjustC.density.get() * 255);
 

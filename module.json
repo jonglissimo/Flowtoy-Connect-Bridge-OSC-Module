@@ -36,6 +36,7 @@
 	{
 		"Number of groups": { "type": "Integer", "description": "Number of groups to control", "default": 0, "min": 1, "max": 20 },
 		"Update Rate": { "type": "Integer", "description": "Update rate", "default": 25, "min": 1, "max": 120 },
+		"Max Brightness": { "type": "Float", "description": "Maximum brightness", "default": 0.5, "min": 0, "max": 1 },
 		"Power":{
 			"type": "Container",
 			"collapsed": false,
@@ -123,7 +124,7 @@
 						"min": 1,
 						"max": 50
 					}
-				},
+				}
 			}
 		},
 
@@ -220,7 +221,7 @@
 					"default": 0.1,
 					"min": 0,
 					"max": 1,
-					"useForMapping": true
+					"mappingIndex": 0
 				}
 			}
 		},
@@ -253,7 +254,7 @@
 				"Color": {
 					"type": "Color",
 					"default": [1,0,0,1],
-					"useForMapping": true
+					"mappingIndex": 0
 				}
 			}
 		}
