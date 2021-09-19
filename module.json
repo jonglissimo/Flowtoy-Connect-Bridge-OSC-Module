@@ -3,7 +3,7 @@
 	"type": "OSC",
 	"path": "Hardware",
 	
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Module to control Flowtoys vision props through the OSC bridge",
 	"url": "https://github.com/jonglissimo/Flowtoy-Connect-Bridge-OSC-Module",
 	"downloadURL": "https://github.com/jonglissimo/Flowtoy-Connect-Bridge-OSC-Module/archive/master.zip",
