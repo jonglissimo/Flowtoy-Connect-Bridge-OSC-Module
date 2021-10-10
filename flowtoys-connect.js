@@ -131,29 +131,38 @@ function createGroup(groupName) {
 	
 	var page = modeC.addIntParameter("Page","Page",1,1,13);
 	page.setAttribute("alwaysNotify", true);
-	var mode = modeC.addIntParameter("Mode","Page",3,1,50);
-	mode.setAttribute("alwaysNotify", true);
+	page.setAttribute("saveValueOnly",false); 
 	
+	var mode = modeC.addIntParameter("Mode","Page",1,1,50);
+	mode.setAttribute("alwaysNotify", true);
+	mode.setAttribute("saveValueOnly",false);
+
 	var adjustC = groupC.addContainer("Adjust");
 	adjustC.setCollapsed(true);
 
 	var enableAdjust = adjustC.addBoolParameter("Enable Adjust", "Enable the adjusts.", false);
 	enableAdjust.setAttribute("alwaysNotify", true);
+	enableAdjust.setAttribute("saveValueOnly",false); 
 
-	var brightness = adjustC.addFloatParameter("Brightness", "Brightness adjust", 0.1, 0, 1);
+	var brightness = adjustC.addFloatParameter("Brightness", "Brightness adjust", 1, 0, 1);
 	brightness.setAttribute("alwaysNotify", true);
+	brightness.setAttribute("saveValueOnly",false); 
 
 	var hue = adjustC.addFloatParameter("Hue", "Hue adjust", 0, 0, 1);
 	hue.setAttribute("alwaysNotify", true);
+	hue.setAttribute("saveValueOnly",false); 
 
 	var saturation = adjustC.addFloatParameter("Saturation", "Saturation adjust", 1, 0, 1);
 	saturation.setAttribute("alwaysNotify", true);
+	saturation.setAttribute("saveValueOnly",false); 
 
 	var speed = adjustC.addFloatParameter("Speed", "Speed adjust", 0.5, 0, 1);
 	speed.setAttribute("alwaysNotify", true);
+	speed.setAttribute("saveValueOnly",false); 
 
-	var density = adjustC.addFloatParameter("Density", "Density adjust", 1, 0, 1);
+	var density = adjustC.addFloatParameter("Density", "Density adjust", 0.5, 0, 1);
 	density.setAttribute("alwaysNotify", true);
+	density.setAttribute("saveValueOnly",false); 
 
 	script.log("Created Group " + groupName);
 }
